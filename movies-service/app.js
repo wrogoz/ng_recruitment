@@ -1,15 +1,10 @@
 const express = require('express');
+const db=require('./db_config/db_config');
 const app = express();
-const mysql = require('mysql');
-var db = mysql.createConnection({
-    host            : 'db',
-    port            : '3306',
-    user            : 'mysql',
-    password        : 'supersecret',
-    database        : 'movies'
-});
+const moviesRoute = require('./routes/moviesRoute');
+app.use(express.json());
 
-db.connect(function(err){
+db.connect((err)=>{
 	if(err){
 		console.error("error connecting: " + err.stack);
 		return process.exit(22);
@@ -17,13 +12,8 @@ db.connect(function(err){
 	console.log("connected as id " + db.threadId);
 });
 
+app.use('/movies',moviesRoute);
 
-app.get('/', (req, res) => {
-        db.query('SELECT * FROM movies',(err,result)=>{
-            if(err)throw err;
-            res.status(200).send(result)
-        })
-});
 
 const port = 3257;
 app.listen(port, () => {

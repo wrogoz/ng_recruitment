@@ -1,15 +1,17 @@
 {
   "name": "movies-service",
   "version": "1.0.0",
-  "description": "",
+  "description": " ",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node app.js"
+    "start": "node app.js"
   },
   "author": "Wojciech Rogóż",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
+    "datejs": "^1.0.0-rc3",
     "express": "^4.17.1",
     "mysql": "^2.18.1"
   }
