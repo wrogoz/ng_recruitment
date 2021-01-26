@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  db:
+    build: ./db-service
+    environment:
+      MYSQL_DATABASE: movies
+      MYSQL_ROOT_PASSWORD: supersecret
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: supersecret
+      DATABASE_HOST: db
+  movies-service:
+    build: ./movies-service
+    ports:
+      - "3257:3257"
+    depends_on:
+     - db
+    restart: on-failure
