@@ -3,7 +3,7 @@ version: "3.8"
 services:
   db:
     networks:
-      - some-net
+      - myNet
     build: ./db-service
     environment:
       MYSQL_DATABASE: movies
@@ -13,7 +13,7 @@ services:
       DATABASE_HOST: db
   movies-service:
     networks:
-      - some-net
+      - myNet
 
     command: bash -c 'while !</dev/tcp/db/3306; do sleep 1; done; npm start'
     build: ./movies-service
@@ -23,5 +23,5 @@ services:
      - db
     restart: on-failure
 networks:
-  some-net:
+  myNet:
     driver: bridge
