@@ -1,7 +1,9 @@
-version: "3"
+version: "3.8"
 
 services:
   db:
+    networks:
+      - some-net
     build: ./db-service
     environment:
       MYSQL_DATABASE: movies
@@ -10,6 +12,9 @@ services:
       MYSQL_PASSWORD: supersecret
       DATABASE_HOST: db
   movies-service:
+    networks:
+      - some-net
+
     command: bash -c 'while !</dev/tcp/db/3306; do sleep 1; done; npm start'
     build: ./movies-service
     ports:
@@ -17,3 +22,6 @@ services:
     depends_on:
      - db
     restart: on-failure
+networks:
+  some-net:
+    driver: bridge
