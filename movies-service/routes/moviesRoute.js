@@ -7,6 +7,6 @@ const {getAllmovies,addMovie} = require('../controllers/movieController')
 
 router.get('/', getAllmovies);
 
-router.post('/',auth, addMovie);
+router.post('/', addMovie);
 
 module.exports=router
