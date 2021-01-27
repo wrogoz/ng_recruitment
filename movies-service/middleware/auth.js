@@ -8,7 +8,7 @@ const auth = async (req, res, next) => {
 
      axios({
         method: 'post',
-        url: 'localhost:3000/auth',
+        url: 'app:3000/auth',
 
         data: {
           username: req.body.username,
@@ -22,7 +22,7 @@ const auth = async (req, res, next) => {
           .catch(function (error) {
             console.log(error);
           })
-next()
+next();
 
 }
     else{
