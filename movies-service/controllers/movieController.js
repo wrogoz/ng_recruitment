@@ -1,5 +1,4 @@
 const db = require("../db_config/db_config");
-const axios = require('axios');
 const datejs=require('datejs');
 const saveMovieToDb=require('../assets/saveMovieToDb')
 
@@ -11,8 +10,6 @@ const getAllmovies = (err, res) => {
 };
 
 const addMovie = async (req, res) => {
-
-
 const user = req.body.user;
 if(user.role==='premium'){
   saveMovieToDb(req.body.title,user,res)
@@ -21,21 +18,8 @@ if(user.role==='premium'){
     if(err)throw err;
 
    result[0].count<5? saveMovieToDb(req.body.title,user,res):res.send('to many movies');
-
-
-
-
 })
 }
-
-
-
-
-
-
-
-
-
 };
 
 module.exports = { getAllmovies, addMovie };
