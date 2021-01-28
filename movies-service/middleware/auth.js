@@ -1,27 +1,45 @@
 const jwt = require("jsonwebtoken");
-const axios = require("axios")
+const axios = require("axios");
 
-const auth =  async(req, res, next) => {
-try {
-const u = await axios.post('http://app:3000/auth', {
-    username: "basic-thomas",
-    password: "sR-_pcoow-27-6PAwCD8"
-  })
-  .then(function (response) {
-    return ':)'
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  console.log(u)
+const auth = async (req, res, next) => {
+  try {
+    let token = req.header("access-token")
+    if (!token) {
+      // zrobic funkcje
+       token = await axios
+        .post("http://app:3000/auth", {
+          username: req.body.username,
+          password: req.body.password,
+        })
+        .then(function (response) {
+          return response.data.token;
+        })
+        .catch(function (error) {
 
-} catch (error) {
-console.log(error)
-}
+          return 'refusal'
+        });
 
-next()
+      if(token==='refusal'){
+        res.status(401).send({server:'wrong username or password'})
+      }
+      else {
 
+        const decodedToken = jwt.verify(token, 'secret');
+        console.log(decodedToken);
+        req.body.user = decodedToken;
+        next();
+      }
+    }
+    else{
+      const decodedToken = jwt.verify(token, 'secret');
+        console.log(decodedToken);
+        req.body.user = decodedToken;
+        next();
+    }
+  } catch (error) {
 
+    res.status(500).send({error:error.data})
+  }
 };
 
 module.exports = auth;
