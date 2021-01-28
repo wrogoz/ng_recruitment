@@ -23,16 +23,17 @@ const auth = async (req, res, next) => {
         res.status(401).send({server:'wrong username or password'})
       }
       else {
-
+            // zamienic secret na process.env.secret
         const decodedToken = jwt.verify(token, 'secret');
-        console.log(decodedToken);
+
         req.body.user = decodedToken;
         next();
       }
     }
     else{
+       // zamienic secret na process.env.secret
       const decodedToken = jwt.verify(token, 'secret');
-        console.log(decodedToken);
+
         req.body.user = decodedToken;
         next();
     }

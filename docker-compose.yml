@@ -11,6 +11,7 @@ services:
       MYSQL_USER: mysql
       MYSQL_PASSWORD: supersecret
       DATABASE_HOST: db
+      MULTIPLESTATEMENTS: 'true'
   movies-service:
     networks:
       - myNet

@@ -5,5 +5,5 @@ CREATE TABLE movies (
     Genre VARCHAR(100) NOT NULL,
     Directory VARCHAR(255),
     created_at TIMESTAMP DEFAULT NOW(),
-    user_id INT UNIQUE
+    user_id INT
 );

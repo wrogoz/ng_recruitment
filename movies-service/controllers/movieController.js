@@ -1,6 +1,8 @@
 const db = require("../db_config/db_config");
 const axios = require('axios');
-const datejs=require('datejs')
+const datejs=require('datejs');
+const saveMovieToDb=require('../assets/saveMovieToDb')
+
 const getAllmovies = (err, res) => {
   db.query("SELECT * FROM movies", (err, result) => {
     if (err) throw err;
@@ -9,31 +11,31 @@ const getAllmovies = (err, res) => {
 };
 
 const addMovie = async (req, res) => {
-  try {
-    const sql = `INSERT INTO movies SET?`;
-    const movieInfo= await axios
-      .get(`http://www.omdbapi.com/?apikey=99e1afc3&t=${req.body.title}`)
-      .then((response)=> {
-        const {Title,Released,Genre,Director}=response.data
-        return {
-            Title,
-            Released:Date.parse(Released),
-            Genre,
-            Directory:Director
-        }
-
-      });
 
 
-    db.query(sql, movieInfo, (err, result) => {
-      if (err) throw err;
+const user = req.body.user;
+if(user.role==='premium'){
+  saveMovieToDb(req.body.title,user,res)
+}else{
+  db.query("SELECT COUNT(*) AS count FROM movies WHERE user_id=?",user.userId,(err,result)=>{
+    if(err)throw err;
 
-      res.status(200).send({'server':'success'});
-    });
+   result[0].count<5? saveMovieToDb(req.body.title,user,res):res.send('to many movies');
 
-  } catch (error) {
-      res.status(500).send(error)
-  }
+
+
+
+})
+}
+
+
+
+
+
+
+
+
+
 };
 
 module.exports = { getAllmovies, addMovie };
