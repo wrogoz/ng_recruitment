@@ -21,15 +21,15 @@
 auth service defines two user accounts that you should use :
 
 - b.a) Premium User
-  username: 'premium-jim'
-  password: 'GBLtTyq3E_UNjFnpo9m6'
+  - username: 'premium-jim'
+  - password: 'GBLtTyq3E_UNjFnpo9m6'
   
 - b.b) Basic User
-  username: 'basic-thomas'
-  password: 'sR-_pcoow-27-6PAwCD8'
+  - username: 'basic-thomas'
+  - password: 'sR-_pcoow-27-6PAwCD8'
   
 - c) to Authorize user you can use
-    localhost:3000/auth
+    - localhost:3000/auth
 
 # Technologies:
 - Express
