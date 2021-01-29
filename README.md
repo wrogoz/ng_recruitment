@@ -7,9 +7,9 @@
   a)npm install
   b)rename example.env to .env
 
-3)in root folder:
-                a)JWT_SECRET=secret docker-compose-build
-                b)JWT_SECRET=secret docker-compose up
+3) in root folder:
+                a) JWT_SECRET=secret docker-compose-build
+                b) JWT_SECRET=secret docker-compose up
  
 # Routes
 
@@ -18,11 +18,11 @@ a) Method GET route: localhost:3257/movies
 b) Method POST route: localhost:3257/movies
 auth service defines two user accounts that you should use :
 
-b.a)Premium User
+b.a) Premium User
   username: 'premium-jim'
   password: 'GBLtTyq3E_UNjFnpo9m6'
   
-b.b)Basic User
+b.b) Basic User
   username: 'basic-thomas'
   password: 'sR-_pcoow-27-6PAwCD8'
   
