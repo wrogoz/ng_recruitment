@@ -3,9 +3,10 @@ const axios = require("axios");
 
 const auth = async (req, res, next) => {
   try {
-    let token = req.header("access-token")
+    let token = req.header("Authorization")
+
     if (!token) {
-      // zrobic funkcje
+
        token = await axios
         .post("http://app:3000/auth", {
           username: req.body.username,
@@ -23,16 +24,15 @@ const auth = async (req, res, next) => {
         res.status(401).send({server:'wrong username or password'})
       }
       else {
-            // zamienic secret na process.env.secret
-        const decodedToken = jwt.verify(token, 'secret');
 
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         req.body.user = decodedToken;
         next();
       }
     }
     else{
-       // zamienic secret na process.env.secret
-      const decodedToken = jwt.verify(token, 'secret');
+
+      const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
         req.body.user = decodedToken;
         next();

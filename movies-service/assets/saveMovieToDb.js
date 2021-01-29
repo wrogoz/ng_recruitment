@@ -7,7 +7,7 @@ const saveMovieToDb = async(title,userData,res)=>{
 
       const sql = `INSERT INTO movies SET?`;
     const movieInfo= await axios
-      .get(`http://www.omdbapi.com/?apikey=99e1afc3&t=${title}`)
+      .get(`http://www.omdbapi.com/?apikey=${process.env.OMD_API_KEY}&t=${title}`)
       .then((response)=> {
         const {Title,Released,Genre,Director}=response.data
         return {
