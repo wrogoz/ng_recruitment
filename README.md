@@ -14,9 +14,9 @@
  
 # Routes
 
-- a) Method *GET* route: localhost:3257/movies
-              action: show all movies in db
-- b) Method *POST* route: localhost:3257/movies
+- a) Method **GET** route: **localhost:3257/movies**
+             
+- b) Method **POST** route: **localhost:3257/movies**
 
 auth service defines two user accounts that you should use :
 
