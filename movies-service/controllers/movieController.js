@@ -27,7 +27,7 @@ if(user.role==='premium'){
         db.query(sql,user.userId,(err,result)=>{
           if(err)throw err;
 
-         result[0].count<5? saveMovieToDb(req.body.title,user,res):res.send({server:'You reached limit on this month - if You want to add more movies buy a premium account'});
+         result[0].count<5? saveMovieToDb(req.body.title,user,res):res.status(403).send({server:'You reached limit on this month - if You want to add more movies buy a premium account'});
       })
       }
   })
