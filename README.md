@@ -9,8 +9,8 @@
   - b)rename example.env to .env
 
 3) in root folder:
-               - a) JWT_SECRET=secret docker-compose-build
-               - b) JWT_SECRET=secret docker-compose up
+               - JWT_SECRET=secret docker-compose-build
+               - JWT_SECRET=secret docker-compose up
  
 # Routes
 
