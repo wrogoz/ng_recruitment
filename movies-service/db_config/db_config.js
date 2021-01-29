@@ -5,7 +5,8 @@ var db = mysql.createConnection({
     user            : 'mysql',
     password        : 'supersecret',
     database        : 'movies',
-    multipleStatements: true
+    multipleStatements: true,
+
 });
 
 module.exports=db
