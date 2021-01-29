@@ -3,8 +3,10 @@
 
 # Instalation and Start :
 1) go to ./app then npm install
-2) go to ./movies-service then a)npm install
-                               b)rename example.env to .env
+2) go to ./movies-service then:
+  a)npm install
+  b)rename example.env to .env
+
 3)in root folder:
                 a)JWT_SECRET=secret docker-compose-build
                 b)JWT_SECRET=secret docker-compose up
